@@ -1,8 +1,9 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,50 +23,42 @@ public class Curso {
     @JoinColumn(name="id_tema")
     Tema tema;
     @Column(name="fecha_inicio")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    Date fechaInicio;
-
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    LocalDate fechaInicio;
     @Column(name="fecha_fin")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    Date fechaFin;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    LocalDate fechaFin;
     @OneToOne
-    @JoinColumn(name="id_docente")
+    @JoinColumn(name = "id_docente")
     Docente docente;
     @Column(name="nombre")
     String nombre;
-
     @ManyToOne
     @JoinColumn(name="id_empresa",table = "cursos_empresariales")
     Empresa empresa;
-
     @Column(name="precio_total",table = "cursos_empresariales")
     Float precioTotal;
-
     @Column(name="cantidad_alumnos",table = "cursos_empresariales")
     Float cantidadAlumnos;
-
     @Column(name="precio_por_alumno",table = "cursos_personales")
     Float precioPorAlumno;
-
-
     @ManyToOne
     @JoinColumn(name="id_aula",table = "cursos_personales")
     Aula aula;
 
-
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 

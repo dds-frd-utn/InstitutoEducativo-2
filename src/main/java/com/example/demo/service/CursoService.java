@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface CursoService {
     public List<Curso> findAllCurso();
+    public Curso saveCurso(Curso curso);
 }

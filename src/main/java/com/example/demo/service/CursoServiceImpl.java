@@ -15,4 +15,7 @@ public class CursoServiceImpl implements CursoService {
     public List<Curso> findAllCurso(){
         return cursoRepository.findAll();
     }
+    public Curso saveCurso(Curso curso){
+        return cursoRepository.save(curso);
+    }
 }
