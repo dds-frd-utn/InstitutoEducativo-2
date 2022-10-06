@@ -14,6 +14,7 @@ public class Tema {
     String nombre;
     @Column(name="duracion")
     Long duracion;
+    public Tema() { super(); }
     public Long getId() {
         return id;
     }

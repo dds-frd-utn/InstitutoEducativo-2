@@ -13,7 +13,7 @@ public class Docente {
     @Column(name="nombre")
     String nombre;
 
-
+    public Docente() { super(); }
     public long getId() {
         return id;
     }

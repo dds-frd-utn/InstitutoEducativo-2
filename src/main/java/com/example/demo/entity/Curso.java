@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,21 +40,24 @@ public class Curso {
     @Column(name="precio_total",table = "cursos_empresariales")
     Float precioTotal;
     @Column(name="cantidad_alumnos",table = "cursos_empresariales")
-    Float cantidadAlumnos;
+    Integer cantidadAlumnos;
     @Column(name="precio_por_alumno",table = "cursos_personales")
     Float precioPorAlumno;
     @ManyToOne
     @JoinColumn(name="id_aula",table = "cursos_personales")
     Aula aula;
-
+    @Formula(value = "(SELECT COUNT(*) FROM alumno_curso_personal acp WHERE acp.id_curso_personal = id)")
+    Long cantidadAlumnosCursoPersonal;
+    public Curso() { super(); }
+    public Long getCantidadAlumnosCursoPersonal() {
+        return cantidadAlumnosCursoPersonal;
+    }
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
-
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
-
     public LocalDate getFechaFin() {
         return fechaFin;
     }
@@ -70,11 +74,11 @@ public class Curso {
         this.precioTotal = precioTotal;
     }
 
-    public Float getCantidadAlumnos() {
+    public Integer getCantidadAlumnos() {
         return cantidadAlumnos;
     }
 
-    public void setCantidadAlumnos(Float cantidadAlumnos) {
+    public void setCantidadAlumnos(Integer cantidadAlumnos) {
         this.cantidadAlumnos = cantidadAlumnos;
     }
 
@@ -85,8 +89,6 @@ public class Curso {
     public void setPrecioPorAlumno(Float precioPorAlumno) {
         this.precioPorAlumno = precioPorAlumno;
     }
-
-
 
     public Aula getAula() {
         return aula;
@@ -103,9 +105,6 @@ public class Curso {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
-    public Curso() { super(); }
-
     public Long getId() {
         return id;
     }

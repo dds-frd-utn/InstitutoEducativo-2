@@ -13,6 +13,7 @@ public class Empresa {
     String nombre;
     @Column(name="direccion")
     String direccion;
+    public Empresa() { super(); }
     public long getId() {
         return id;
     }

@@ -15,7 +15,7 @@ public class Aula {
 
     @Column(name = "capacidad")
     String capacidad;
-
+    public Aula() { super(); }
     public Long getId() {
         return id;
     }
