@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Curso;
 import com.example.demo.service.CursoService;
-import org.hibernate.mapping.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
-public class CursosController {
+public class CursoController {
     @Autowired
     CursoService cursoService;
-
     @RequestMapping(value = "/cursos", method = RequestMethod.GET, produces = "application/json")
-    public List<Curso> getCurso() {
+    public List<Curso> getCursos() {
         return cursoService.findAllCurso();
     }
 
